@@ -1,0 +1,9 @@
+{
+  "name": "jornada-visitas",
+  "version": "1.0.0",
+  "description": "Control de visitas — Manufacturas Eliot S.A.",
+  "main": "api/load.js",
+  "dependencies": {
+    "mysql2": "^3.6.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/load",             "destination": "/api/load.js" },
+    { "source": "/api/login",            "destination": "/api/login.js" },
+    { "source": "/api/empleados",        "destination": "/api/empleados.js" },
+    { "source": "/api/empleados/:id",    "destination": "/api/empleados.js" },
+    { "source": "/api/clientes",         "destination": "/api/clientes.js" },
+    { "source": "/api/clientes/:id",     "destination": "/api/clientes.js" },
+    { "source": "/api/visitas",          "destination": "/api/visitas.js" },
+    { "source": "/api/visitas/:id",      "destination": "/api/visitas.js" },
+    { "source": "/api/cuentas",          "destination": "/api/cuentas.js" },
+    { "source": "/api/cuentas/:id",      "destination": "/api/cuentas.js" },
+    { "source": "/",                     "destination": "/jornada_laboral.html" }
+  ]
+}
