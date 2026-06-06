@@ -874,7 +874,7 @@ function saveModal(){if(modalContext.onSave)modalContext.onSave();closeModalDire
 // ══ EDIT RECORD ══
 function editRecord(id){
   if(!can('edit'))return;
-  let r=records.find(x=>x.id===id);if(!r)return;
+  let r=records.find(x=>String(x.id)===String(id)||String(x._dbId)===String(id));if(!r)return;
   let empOptions=employees.map(e=>`<option value="${e.id}" ${e.id===r.empId?'selected':''}>${e.name}</option>`).join('');
   let cliOptions=clients.map(c=>`<option value="${c.id}" ${c.id===r.clientId?'selected':''}>${c.name}</option>`).join('');
   let objectives=['Prospección','Presentación de producto','Seguimiento de cotización','Cierre de venta','Cobro de cartera','Soporte postventa','Renovación de contrato','Entrega de pedido','Otro'];
@@ -994,7 +994,7 @@ async function addClient(){
   populateSelect();renderClients();
 }
 async function editClient(id){
-  let c=clients.find(x=>x.id===id);if(!c)return;
+  let c=clients.find(x=>String(x.id)===String(id));if(!c)return;
   openModal('Editar cliente',`
     <div class="form-group"><label>Nombre</label><input type="text" id="ec-name" value="${c.name}"></div>
     <div class="form-group"><label>Contacto</label><input type="text" id="ec-contact" value="${c.contact}"></div>
@@ -1040,7 +1040,7 @@ async function addEmployee(){
   populateSelect();renderUsers();
 }
 async function editEmployee(id){
-  let e=employees.find(x=>x.id===id);if(!e)return;
+  let e=employees.find(x=>String(x.id)===String(id));if(!e)return;
   openModal('Editar representante',`
     <div class="form-group"><label>Nombre completo</label><input type="text" id="ee-name" value="${e.name}"></div>
     <div class="form-group"><label>Cargo</label><input type="text" id="ee-role" value="${e.role}"></div>
@@ -1088,7 +1088,7 @@ async function addAccount(){
 }
 async function editAccount(id){
   if(!can('accounts'))return;
-  let a=accounts.find(x=>x.id===id);if(!a)return;
+  let a=accounts.find(x=>String(x.id)===String(id));if(!a)return;
   let empOpts='<option value="">— Sin vincular —</option>'+employees.map(e=>`<option value="${e.id}" ${e.id===a.empId?'selected':''}>${e.name}</option>`).join('');
   openModal('Editar cuenta: '+a.username,`
     <div class="form-group"><label>Nueva contraseña (dejar vacío para no cambiar)</label><input type="password" id="ea-pass" placeholder="••••••••"></div>
@@ -1107,7 +1107,7 @@ async function editAccount(id){
 }
 async function removeAccount(id){
   if(!can('accounts'))return;
-  let a=accounts.find(x=>x.id===id);
+  let a=accounts.find(x=>String(x.id)===String(id));
   if(a&&a.username==='admin'){alert('No puedes eliminar al admin principal.');return;}
   if(!confirm('¿Eliminar esta cuenta?'))return;
   await api('DELETE','/cuentas/'+id);
