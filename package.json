@@ -1,0 +1,8 @@
+{
+  "name": "jornada-visitas",
+  "version": "1.0.0",
+  "description": "Control de visitas — Manufacturas Eliot S.A.",
+  "dependencies": {
+    "@vercel/postgres": "^0.5.0"
+  }
+}
